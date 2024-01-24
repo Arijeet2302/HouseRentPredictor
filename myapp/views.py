@@ -8,15 +8,15 @@ sc = jl.load('static/Standard_scaler.joblib')
 model = jl.load('static/House_Price_precdictor.joblib')
 
 def index(request):
-    # data = pd.read_csv('static/House_Rent_Dataset.csv')
-    # cities = data['City'].unique()
-    # bhks = sorted(data['BHK'].unique())
-    # bathrooms = sorted(data['Bathroom'].unique())
+    data = pd.read_csv('static/House_Rent_Dataset.csv')
+    cities = data['City'].unique()
+    bhks = sorted(data['BHK'].unique())
+    bathrooms = sorted(data['Bathroom'].unique())
 
     context = {
-        "cities" : ['Kolkata', 'Bangalore', 'Hydrabad', 'Chennai', 'Delhi', 'Mumbai'],
-        "bhks" : [1,2,3,4,5,6],
-        "bathrooms" : [1,2,3,4,5,6,7,10],   
+        "cities" : cities,
+        "bhks" : bhks,
+        "bathrooms" : bathrooms,   
     }
 
     return render(request, 'index.html', context)
