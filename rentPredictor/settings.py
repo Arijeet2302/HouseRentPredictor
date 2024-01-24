@@ -56,6 +56,10 @@ MIDDLEWARE = [
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://t82ua8lgwd.execute-api.us-west-2.amazonaws.com'
+],
+
 ROOT_URLCONF = 'rentPredictor.urls'
 
 TEMPLATES = [
