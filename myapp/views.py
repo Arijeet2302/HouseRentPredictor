@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 import pandas as pd
 import joblib as jl
 
@@ -21,6 +22,7 @@ def index(request):
 
     return render(request, 'index.html', context)
 
+@csrf_exempt
 def predict(request):    
 
     df = pd.read_csv('static/sending_format.csv')
