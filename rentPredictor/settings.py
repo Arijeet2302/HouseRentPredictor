@@ -51,12 +51,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+CSRF_COOKIE_SECURE = True
+
 CSRF_TRUSTED_ORIGINS = ['https://t82ua8lgwd.execute-api.us-west-2.amazonaws.com',]
+
+CSRF_COOKIE_DOMAIN = 'https://t82ua8lgwd.execute-api.us-west-2.amazonaws.com'
 
 ROOT_URLCONF = 'rentPredictor.urls'
 
