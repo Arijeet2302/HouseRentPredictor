@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Rent Predictor</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        /* margin-top: 30px; */
+      }
+
+      #formContainer {
+        max-width: 800px;
+        margin: 1px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        box-sizing: border-box;
+      }
+
+      #myform {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+
+      button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .radio-group {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 10px;
+      }
+
+      .radio-group label {
+        font-weight: lighter;
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .radio-group input {
+        margin-right: 5px;
+      }
+
+      #bottom {
+        display: flex;
+        justify-content: center;
+      }
+      #res {
+        margin : 10px;
+        font-weight : bold;
+        display: flex;
+        justify-content : center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>House Rent Predictor</h1>
+    <div id="formContainer">
+      <form method="post" id="formPosted" action="{% url 'predict' %}">
+    {% csrf_token %}
+        <div id="myform">
+          <div>
+            <label for="city">Select City:</label>
+            <select id="city" name="city">
+              {% for city in cities %}
+              <option value="{{city}}">{{city}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div>
+            <label for="BHK">BHK:</label>
+            <select id="BHK" name="BHK">
+              {% for bhk in bhks %}
+              <option value="{{bhk}}">{{bhk}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div>
+            <label for="size">Select Size:</label>
+            <input id="size" name="size" />
+          </div>
+          <div>
+            <label for="bathroom">Bathroom:</label>
+            <select id="bathroom" name="bathroom">
+              {% for bathroom in bathrooms %}
+              <option value="{{bathroom}}">{{bathroom}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="radio-group">
+            <label><input type="radio" name="radio" value="Furnished" /> Furnished</label>
+            <label><input type="radio" name="radio" value="Unfurnished" /> Unfurnished</label>
+            <label><input type="radio" name="radio" value="Semi-Furnished" /> Semi-furnished</label>
+          </div>
+          <div class="radio-group">
+          <label><input type="radio" name="radio1" value="Super Area" /> Super Area</label>
+          <label><input type="radio" name="radio1" value="Carpet Area" /> Carpet Area</label>
+          <label><input type="radio" name="radio1" value="Built Area" /> Built Area</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="radio2" value="Family" /> Family</label>
+          <label><input type="radio" name="radio2" value="Bachelors" /> Bachelors</label>
+          <label><input type="radio" name="radio2" value="Bachelors/Family" /> Both</label>
+        </div>
+        <div class="radio-group">
+          <label><input type="radio" name="radio3" value="Contact Owner" /> Contact Owner</label>
+          <label><input type="radio" name="radio3" value="Contact Agent" /> Contact Agent</label>
+          <label><input type="radio" name="radio3" value="Contact Builder" /> Contact Builder</label>
+        </div>
+      </div>
+        <div id="bottom">
+          <button type="submit" id="submitButton">Submit</button>
+        </div>
+      </form>
+      <div id="res">
+      {% if pred %}
+        <span> House Rent : ₹{{pred}}</span>
+      {% endif %}
+      </div>
+    </div>
+  </body>
+  <script>
+  </script>
+</html>
