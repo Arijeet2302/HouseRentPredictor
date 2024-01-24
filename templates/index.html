@@ -145,9 +145,14 @@
         </div>
       </div>
         <div id="bottom">
+        {% if not pred %}
           <button type="submit" id="submitButton">Submit</button>
+        {% endif %}
         </div>
       </form>
+      {% if pred %}
+      <button onClick="reset()">Reset</button>
+      {% endif %}
       <div id="res">
       {% if pred %}
         <span> House Rent : ₹{{pred}}</span>
@@ -156,5 +161,10 @@
     </div>
   </body>
   <script>
+
+      function reset() {
+        window.location.href = "{% url 'index' %}";
+      }
+
   </script>
 </html>

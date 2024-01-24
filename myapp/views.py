@@ -4,7 +4,8 @@ import joblib as jl
 
 # Create your views here.
 
-
+sc = jl.load('static/Standard_scaler.joblib')
+model = jl.load('static/House_Price_precdictor.joblib')
 
 def index(request):
     data = pd.read_csv('static/House_Rent_Dataset.csv')
@@ -20,10 +21,7 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-def predict(request):
-
-    sc = jl.load('static/Standard_scaler.joblib')
-    model = jl.load('static/House_Price_precdictor.joblib')
+def predict(request):    
 
     df = pd.read_csv('static/sending_format.csv')
 
