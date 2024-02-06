@@ -15,7 +15,34 @@
       h1 {
         text-align: center;
         color: #333;
-        /* margin-top: 30px; */
+        margin-top: 30px; /* Adjusted margin-top */
+      }
+
+      #header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      #header h1 {
+        margin: 0;
+      }
+
+      #arrowButton {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #arrowButton:hover {
+        background-color: #0056b3;
       }
 
       #formContainer {
@@ -23,6 +50,7 @@
         margin: 1px auto;
         background-color: #fff;
         padding: 20px;
+        margin: 30px auto;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
@@ -53,6 +81,7 @@
         background-color: #4caf50;
         color: #fff;
         padding: 10px 15px;
+        margin: 0px 5px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -81,6 +110,7 @@
         display: flex;
         justify-content: center;
       }
+
       #res {
         margin : 10px;
         font-weight : bold;
@@ -90,7 +120,10 @@
     </style>
   </head>
   <body>
-    <h1>House Rent Predictor</h1>
+    <div id="header">
+      <h1>House Rent Predictor</h1>
+      <div id="arrowButton" onclick="goto()">Go to Spam Email Predictor &rarr;</div> 
+    </div>
     <div id="formContainer">
       <form method="post" id="formPosted" action="{% url 'predict' %}">
         <div id="myform">
@@ -146,11 +179,11 @@
         <div id="bottom">
         {% if not pred %}
           <button type="submit" id="submitButton">Submit</button>
-        {% endif %}
+          {% endif %}
         </div>
       </form>
       {% if pred %}
-      <button onClick="reset()">Reset</button>
+      <button type="button" onClick="reset()">Reset</button>
       {% endif %}
       <div id="res">
       {% if pred %}
@@ -165,5 +198,8 @@
         window.location.href = "{% url 'index' %}";
       }
 
+      function goto() {
+        window.location.href = "{% url 'mail_checker' %}"
+      }
   </script>
 </html>
